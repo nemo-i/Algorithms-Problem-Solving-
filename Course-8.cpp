@@ -216,18 +216,44 @@ void PrintCalnderDays(short Year,short Month) {
 	}
 	std::cout << '\n';
 }
-void PrintCalenderCard() {
-	short year = ReadYear();
-	short month = ReadMonth();
-	PrintDashLineWithMonthNameInMiddle(MonthName(month));
+void PrintCalenderCard(short Year,short Month) {
+	//short year = ReadYear();
+	//short month = ReadMonth();
+	PrintDashLineWithMonthNameInMiddle(MonthName(Month));
 	PrintClanderHeader();
-	PrintCalnderDays(year, month);
+	PrintCalnderDays(Year, Month);
 	PrintDashLine();
+}
+void PrintCharacterBeforeAndAfterText(std::string Text, char Char = '-' , short LineLength = 40) {
+	short characterBefore = (LineLength - Text.length()) / 2;
+	short characterAfter = LineLength - Text.length() - characterBefore;
+	std::cout << std::string(characterBefore, Char) << Text << std::string(characterAfter, Char)<<std::endl;
+}
+
+std::string  GenerateCalenderTextWithYear(short Year){
+	return "Calender - "+ std::to_string(Year);
+}
+void PrintYearCalenderHeader(short Year) {
+	PrintDashLine();
+	PrintCharacterBeforeAndAfterText(GenerateCalenderTextWithYear(Year),' ');
+	PrintDashLine();
+}
+
+void PrintYearCalender() {
+	
+	short year = ReadYear();
+	PrintYearCalenderHeader(year);
+	for (size_t i = 1; i <= 12; i++)
+	{
+		PrintCalenderCard(year,i);
+		std::cout<<'\n';
+	}
 }
 
 int main()
 {
 
-	PrintCalenderCard();
-} 
+	PrintYearCalender()
+		;
+}
 
