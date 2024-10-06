@@ -421,3 +421,55 @@ void PrintCalenderCard() {
 
 ```
 
+### 30. `void PrintCharacterBeforeAndAfterText(std::string Text, char Char = '-' , short LineLength = 40)`
+- **Input:** 
+  - `std::string Text` - the text to be printed.
+  - `char Char` - the character to be printed before and after the text (default is '-').
+  - `short LineLength` - the total length of the line (default is 40).
+- **Output:** None
+- **Description:** Prints the specified text centered with a given character padding it on both sides to fit the specified line length.
+```cpp
+void PrintCharacterBeforeAndAfterText(std::string Text, char Char = '-' , short LineLength = 40) {
+	short characterBefore = (LineLength - Text.length()) / 2;
+	short characterAfter = LineLength - Text.length() - characterBefore;
+	std::cout << std::string(characterBefore, Char) << Text << std::string(characterAfter, Char)<<std::endl;
+}
+```
+### 31. `std::string GenerateCalenderTextWithYear(short Year)`
+- **Input:** 
+  - `short Year` - the year for which the calendar text is generated.
+- **Output:** `std::string` - a string containing the calendar text with the specified year.
+- **Description:** Generates a string that represents the calendar header for the specified year.
+```cpp
+std::string  GenerateCalenderTextWithYear(short Year){
+	return "Calender - "+ std::to_string(Year);
+}
+```
+### 32. `void PrintYearCalenderHeader(short Year)`
+- **Input:** 
+  - `short Year` - the year for which the calendar header is printed.
+- **Output:** None
+- **Description:** Prints the header for the year calendar by calling functions to print dash lines and the formatted year text.
+```cpp
+void PrintYearCalenderHeader(short Year) {
+	PrintDashLine();
+	PrintCharacterBeforeAndAfterText(GenerateCalenderTextWithYear(Year),' ');
+	PrintDashLine();
+}
+```
+### 33. `void PrintYearCalender()`
+- **Input:** None
+- **Output:** None
+- **Description:** Reads the year, prints the year calendar header, and calls the function to print the calendar card for each month of the specified year.
+```cpp
+void PrintYearCalender() {
+	
+	short year = ReadYear();
+	PrintYearCalenderHeader(year);
+	for (size_t i = 1; i <= 12; i++)
+	{
+		PrintCalenderCard(year,i);
+		
+	}
+}
+```
