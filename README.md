@@ -648,3 +648,15 @@ void PrintDateLess() {
     }
 }
 ```
+### 45. `bool DateEqualDateTwo(Date sDateOne, Date sDateTwo)`
+- **Input:** 
+  - `Date sDateOne` - the first date to compare.
+  - `Date sDateTwo` - the second date to compare.
+- **Output:** `bool` - returns `true` if both dates are equal, otherwise returns `false`.
+- **Description:** Compares two dates and determines if they are the same based on year, month, and day.
+
+```cpp
+bool DateEqualDateTwo(Date sDateOne, Date sDateTwo) {
+    return (sDateOne.year == sDateTwo.year) && (sDateOne.month == sDateTwo.month) && (sDateOne.day == sDateTwo.day);
+}
+```
