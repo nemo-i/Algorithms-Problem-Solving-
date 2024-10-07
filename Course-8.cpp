@@ -267,8 +267,15 @@ void PrintHowManyDaysSinceStartOfTheYear() {
 	std::cout << "Number of days from the begining of the year is " << HowManyDaysSinceStartOfTheYear(year, month, day)<<std::endl;
 }
 
-void DateFromDays(short Year , short Days) {
+struct  Date
+{
+	short year;
+	short month;
+	short day;
+};
+Date DateFromDays(short Year , short Days) {
 	short month=1;
+	Date date = {0};
 	for (size_t i = 1; i <= 12; i++)
 	{
 
@@ -285,8 +292,10 @@ void DateFromDays(short Year , short Days) {
 		
 
 	}
-
-	std::cout << Days << '/' << month << "/" << Year<<'\n';
+	date.year = Year;
+	date.month = month;
+	date.day = Days;
+		return date;
 }
 // hello test somthing in git
 int main()
