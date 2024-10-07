@@ -367,6 +367,14 @@ void PrintDateLess() {
 bool DateEqualDateTwo(Date sDateOne, Date sDateTwo) {
 	return (sDateOne.year == sDateTwo.year) && (sDateOne.month == sDateTwo.month) && (sDateOne.day == sDateTwo.day);
 }
+
+bool IsLastDayInMonth(Date sDate) {
+	return sDate.day == NumberOfDaysInMonth(sDate.month, sDate.year);
+}
+bool IsLastMonthInYear(Date sDate) {
+	return sDate.month == 12;
+}
+
 	int main()
 {
 
