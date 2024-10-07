@@ -648,3 +648,29 @@ void PrintDateLess() {
     }
 }
 ```
+### 45. `bool DateEqualDateTwo(Date sDateOne, Date sDateTwo)`
+- **Input:** 
+  - `Date sDateOne` - the first date to compare.
+  - `Date sDateTwo` - the second date to compare.
+- **Output:** `bool` - returns `true` if both dates are equal, otherwise returns `false`.
+- **Description:** Compares two dates and determines if they are the same based on year, month, and day.
+
+```cpp
+bool DateEqualDateTwo(Date sDateOne, Date sDateTwo) {
+    return (sDateOne.year == sDateTwo.year) && (sDateOne.month == sDateTwo.month) && (sDateOne.day == sDateTwo.day);
+}
+```
+### 46. `bool IsLastDayInMonth(Date sDate)`
+- **Input:** 
+  - `Date sDate` - the date to check.
+- **Output:** `bool` - returns `true` if the date is the last day of the month, otherwise returns `false`.
+- **Description:** Checks if the given date is the last day of the month based on the number of days in that month.
+
+```cpp
+bool IsLastDayInMonth(Date sDate) {
+    return sDate.day == NumberOfDaysInMonth(sDate.month, sDate.year);
+}
+bool IsLastMonthInYear(Date sDate) {
+	return sDate.month == 12;
+}
+```
