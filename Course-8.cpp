@@ -249,11 +249,28 @@ void PrintYearCalender() {
 		std::cout<<'\n';
 	}
 }
+
+short HowManyDaysSinceStartOfTheYear(short Year, short Month, short Day) {
+	short counter = 0;
+	for (size_t i = 1; i < Month; i++)
+	{
+	 counter +=	NumberOfDaysInMonth(i, Year);
+	}
+	counter += Day;
+	return counter;
+}
+void PrintHowManyDaysSinceStartOfTheYear() {
+	short day = ReadDay();
+	short month = ReadMonth();
+	short year = ReadYear();
+	
+	
+	std::cout << "Number of days from the begining of the year is " << HowManyDaysSinceStartOfTheYear(year, month, day);
+}
 // hello test somthing in git
 int main()
 {
 
-	PrintYearCalender()
-		;
+	PrintHowManyDaysSinceStartOfTheYear();
 }
 
