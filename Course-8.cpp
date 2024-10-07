@@ -323,7 +323,7 @@ Date ReadDate() {
 	return date;
 }
 void PrintDate(Date date){
-	std::cout << date.day << "/" << date.month << "/" << date.year<<"\n";
+	std::cout << date.day << "/" << date.month << "/" << date.year;
 }
 void PrintAddDaysToDate() {
 	Date readDate = ReadDate();
@@ -331,9 +331,33 @@ void PrintAddDaysToDate() {
 	Date date = AddDaysToDate(readDate, days);
 	PrintDate(date);
 }
-int main()
+bool DateOneLessThanDateTwo(Date sDateOne, Date sDateTwo){
+	if (sDateOne.year < sDateTwo.year)return true;
+	if (sDateOne.month < sDateTwo.month) return true;
+	if (sDateOne.day < sDateTwo.day) return true;
+	return false;
+}
+
+void PrintDateLess() {
+	Date dateOne = ReadDate();
+
+	Date dateTwo = ReadDate();
+
+	if (DateOneLessThanDateTwo(dateOne, dateTwo)) {
+		PrintDate(dateOne);
+		std::cout << " Less Than ";
+		PrintDate(dateTwo);
+	}
+	else
+	{
+		PrintDate(dateOne);
+		std::cout << " Not Less Than ";
+		PrintDate(dateTwo);
+	}
+}
+	int main()
 {
 
-	PrintAddDaysToDate();
+		PrintDateLess();
 }
 
