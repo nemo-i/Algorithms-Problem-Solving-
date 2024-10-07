@@ -473,3 +473,35 @@ void PrintYearCalender() {
 	}
 }
 ```
+### 34. `short HowManyDaysSinceStartOfTheYear(short Year, short Month, short Day)`
+- **Input:** 
+  - `short Year` - the year.
+  - `short Month` - the month.
+  - `short Day` - the day of the month.
+- **Output:** `short` - the number of days since the start of the year up to the given day.
+- **Description:** Calculates and returns the total number of days from the beginning of the year to the specified day.
+```cpp
+short HowManyDaysSinceStartOfTheYear(short Year, short Month, short Day) {
+	short counter = 0;
+	for (size_t i = 1; i < Month; i++)
+	{
+	 counter +=	NumberOfDaysInMonth(i, Year);
+	}
+	counter += Day;
+	return counter;
+}
+```
+### 35. `void PrintHowManyDaysSinceStartOfTheYear()`
+- **Input:** None
+- **Output:** None
+- **Description:** Reads the day, month, and year from the user and prints the number of days that have passed since the start of the year.
+```cpp
+void PrintHowManyDaysSinceStartOfTheYear() {
+	short day = ReadDay();
+	short month = ReadMonth();
+	short year = ReadYear();
+	
+	
+	std::cout << "Number of days from the begining of the year is " << HowManyDaysSinceStartOfTheYear(year, month, day);
+}
+```
