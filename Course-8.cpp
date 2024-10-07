@@ -278,7 +278,6 @@ Date DateFromDays(short Year , short Days) {
 	Date date = {0};
 	for (size_t i = 1; i <= 12; i++)
 	{
-
 		short daysInMonth = NumberOfDaysInMonth(i, Year);
 		if ((Days > 28) && (Days > daysInMonth)) {
 			Days -= daysInMonth;
@@ -287,21 +286,54 @@ Date DateFromDays(short Year , short Days) {
 		else
 		{
 			break;
-		}
-		
-		
+		}	
 
 	}
 	date.year = Year;
 	date.month = month;
 	date.day = Days;
-		return date;
+	return date;
 }
 // hello test somthing in git
+
+Date AddDaysToDate(Date sDate,short Days) {
+	short currentYearCounter = sDate.year;
+	short days = Days + HowManyDaysSinceStartOfTheYear(sDate.year, sDate.month, sDate.day);
+	while (true)
+	{
+		short daysInYear = NumberOfDaysInYear(currentYearCounter);
+		if (days > daysInYear) {
+			days -= daysInYear;
+			currentYearCounter++;
+		}
+		else
+		{
+		  sDate =DateFromDays(currentYearCounter,days);
+		  break;
+		}
+	}
+	return sDate;
+}
+
+Date ReadDate() {
+	Date date = { 0 };
+	date.year= ReadYear();
+	date.month = ReadMonth();
+	date.day = ReadDay();
+	return date;
+}
+void PrintDate(Date date){
+	std::cout << date.day << "/" << date.month << "/" << date.year<<"\n";
+}
+void PrintAddDaysToDate() {
+	Date readDate = ReadDate();
+	short days = ReadDay();
+	Date date = AddDaysToDate(readDate, days);
+	PrintDate(date);
+}
 int main()
 {
 
-	//PrintHowManyDaysSinceStartOfTheYear();
-	DateFromDays(ReadYear(),ReadDay());
+	PrintAddDaysToDate();
 }
 
