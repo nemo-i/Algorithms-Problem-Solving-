@@ -505,3 +505,33 @@ void PrintHowManyDaysSinceStartOfTheYear() {
 	std::cout << "Number of days from the begining of the year is " << HowManyDaysSinceStartOfTheYear(year, month, day);
 }
 ```
+### 36. `void DateFromDays(short Year, short Days)`
+- **Input:** 
+  - `short Year` - the year.
+  - `short Days` - the number of days since the beginning of the year.
+- **Output:** None
+- **Description:** Converts the given number of days into a date (day/month) within the specified year and prints it.
+
+```cpp
+void DateFromDays(short Year , short Days) {
+	short month=1;
+	for (size_t i = 1; i <= 12; i++)
+	{
+
+		short daysInMonth = NumberOfDaysInMonth(i, Year);
+		if ((Days > 28) && (Days > daysInMonth)) {
+			Days -= daysInMonth;
+			month ++;
+		}
+		else
+		{
+			break;
+		}
+		
+		
+
+	}
+
+	std::cout << Days << '/' << month << "/" << Year<<'\n';
+}
+```
