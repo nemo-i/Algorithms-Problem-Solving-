@@ -608,11 +608,22 @@ void PrintAddDaysToDate() {
 - **Description:** Compares two dates and determines if the first date is earlier than the second date based on year, month, and day.
 
 ```cpp
-bool DateOneLessThanDateTwo(Date sDateOne, Date sDateTwo) {
-    if (sDateOne.year < sDateTwo.year) return true;
-    if (sDateOne.month < sDateTwo.month) return true;
-    if (sDateOne.day < sDateTwo.day) return true;
-    return false;
+bool DateOneLessThanDateTwo(Date sDateOne, Date sDateTwo){
+	if (sDateOne.year < sDateTwo.year)return true;
+	if (sDateOne.year == sDateTwo.year) {
+		if (sDateOne.month < sDateTwo.month) {
+			return true;
+		}
+		if (sDateOne.month == sDateTwo.month) {
+			if (sDateOne.day < sDateTwo.day) {
+				return true;
+			}
+		}
+		
+	}
+	return false;
+}
+
 }
 ```
 ### 44. `void PrintDateLess()`
