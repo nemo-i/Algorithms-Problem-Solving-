@@ -263,14 +263,36 @@ void PrintHowManyDaysSinceStartOfTheYear() {
 	short day = ReadDay();
 	short month = ReadMonth();
 	short year = ReadYear();
-	
-	
-	std::cout << "Number of days from the begining of the year is " << HowManyDaysSinceStartOfTheYear(year, month, day);
+
+	std::cout << "Number of days from the begining of the year is " << HowManyDaysSinceStartOfTheYear(year, month, day)<<std::endl;
+}
+
+void DateFromDays(short Year , short Days) {
+	short month=1;
+	for (size_t i = 1; i <= 12; i++)
+	{
+
+		short daysInMonth = NumberOfDaysInMonth(i, Year);
+		if ((Days > 28) && (Days > daysInMonth)) {
+			Days -= daysInMonth;
+			month ++;
+		}
+		else
+		{
+			break;
+		}
+		
+		
+
+	}
+
+	std::cout << Days << '/' << month << "/" << Year<<'\n';
 }
 // hello test somthing in git
 int main()
 {
 
-	PrintHowManyDaysSinceStartOfTheYear();
+	//PrintHowManyDaysSinceStartOfTheYear();
+	DateFromDays(ReadYear(),ReadDay());
 }
 
