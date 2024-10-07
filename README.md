@@ -660,3 +660,17 @@ bool DateEqualDateTwo(Date sDateOne, Date sDateTwo) {
     return (sDateOne.year == sDateTwo.year) && (sDateOne.month == sDateTwo.month) && (sDateOne.day == sDateTwo.day);
 }
 ```
+### 46. `bool IsLastDayInMonth(Date sDate)`
+- **Input:** 
+  - `Date sDate` - the date to check.
+- **Output:** `bool` - returns `true` if the date is the last day of the month, otherwise returns `false`.
+- **Description:** Checks if the given date is the last day of the month based on the number of days in that month.
+
+```cpp
+bool IsLastDayInMonth(Date sDate) {
+    return sDate.day == NumberOfDaysInMonth(sDate.month, sDate.year);
+}
+bool IsLastMonthInYear(Date sDate) {
+	return sDate.month == 12;
+}
+```
