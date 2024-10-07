@@ -333,8 +333,17 @@ void PrintAddDaysToDate() {
 }
 bool DateOneLessThanDateTwo(Date sDateOne, Date sDateTwo){
 	if (sDateOne.year < sDateTwo.year)return true;
-	if (sDateOne.month < sDateTwo.month) return true;
-	if (sDateOne.day < sDateTwo.day) return true;
+	if (sDateOne.year == sDateTwo.year) {
+		if (sDateOne.month < sDateTwo.month) {
+			return true;
+		}
+		if (sDateOne.month == sDateTwo.month) {
+			if (sDateOne.day < sDateTwo.day) {
+				return true;
+			}
+		}
+		
+	}
 	return false;
 }
 
