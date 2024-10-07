@@ -364,6 +364,9 @@ void PrintDateLess() {
 		PrintDate(dateTwo);
 	}
 }
+bool DateEqualDateTwo(Date sDateOne, Date sDateTwo) {
+	return (sDateOne.year == sDateTwo.year) && (sDateOne.month == sDateTwo.month) && (sDateOne.day == sDateTwo.day);
+}
 	int main()
 {
 
