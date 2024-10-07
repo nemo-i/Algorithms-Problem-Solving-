@@ -535,3 +535,68 @@ void DateFromDays(short Year , short Days) {
 	std::cout << Days << '/' << month << "/" << Year<<'\n';
 }
 ```
+### 37. `Date AddDaysToDate(Date sDate, short Days)`
+- **Input:** 
+  - `Date sDate` - the starting date.
+  - `short Days` - the number of days to add to the starting date.
+- **Output:** `Date` - the resulting date after adding the specified number of days.
+- **Description:** Adds a specified number of days to the starting date, taking into account the number of days in each year and month, and returns the new date.
+
+```cpp
+Date AddDaysToDate(Date sDate, short Days) {
+    short currentYearCounter = sDate.year;
+    short days = Days + HowManyDaysSinceStartOfTheYear(sDate.year, sDate.month, sDate.day);
+    while (true)
+    {
+        short daysInYear = NumberOfDaysInYear(currentYearCounter);
+        if (days > daysInYear) {
+            days -= daysInYear;
+            currentYearCounter++;
+        }
+        else
+        {
+            sDate = DateFromDays(currentYearCounter, days);
+            break;
+        }
+    }
+    return sDate;
+}
+```
+### 38. `Date ReadDate()`
+- **Input:** None
+- **Output:** `Date` - the date object containing the year, month, and day entered by the user.
+- **Description:** Reads the year, month, and day from the user and returns a `Date` object representing that date.
+
+```cpp
+Date ReadDate() {
+    Date date = { 0 };
+    date.year = ReadYear();
+    date.month = ReadMonth();
+    date.day = ReadDay();
+    return date;
+}
+```
+### 39. `void PrintDate(Date date)`
+- **Input:** 
+  - `Date date` - the date to be printed.
+- **Output:** None
+- **Description:** Prints the specified date in the format "day/month/year".
+
+```cpp
+void PrintDate(Date date) {
+    std::cout << date.day << "/" << date.month << "/" << date.year << "\\n";
+}
+```
+### 40. `void PrintAddDaysToDate()`
+- **Input:** None
+- **Output:** None
+- **Description:** Reads a date and a number of days from the user, adds the specified number of days to the date, and prints the resulting date.
+
+```cpp
+void PrintAddDaysToDate() {
+    Date readDate = ReadDate();
+    short days = ReadDay();
+    Date date = AddDaysToDate(readDate, days);
+    PrintDate(date);
+}
+```
