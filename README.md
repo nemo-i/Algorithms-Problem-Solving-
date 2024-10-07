@@ -600,3 +600,40 @@ void PrintAddDaysToDate() {
     PrintDate(date);
 }
 ```
+### 41. `bool DateOneLessThanDateTwo(Date sDateOne, Date sDateTwo)`
+- **Input:** 
+  - `Date sDateOne` - the first date to compare.
+  - `Date sDateTwo` - the second date to compare.
+- **Output:** `bool` - returns `true` if the first date is less than the second date, otherwise returns `false`.
+- **Description:** Compares two dates and determines if the first date is earlier than the second date based on year, month, and day.
+
+```cpp
+bool DateOneLessThanDateTwo(Date sDateOne, Date sDateTwo) {
+    if (sDateOne.year < sDateTwo.year) return true;
+    if (sDateOne.month < sDateTwo.month) return true;
+    if (sDateOne.day < sDateTwo.day) return true;
+    return false;
+}
+```
+### 44. `void PrintDateLess()`
+- **Input:** None
+- **Output:** None
+- **Description:** Reads two dates from the user, compares them, and prints whether the first date is less than the second date.
+
+```cpp
+void PrintDateLess() {
+    Date dateOne = ReadDate();
+    Date dateTwo = ReadDate();
+
+    if (DateOneLessThanDateTwo(dateOne, dateTwo)) {
+        PrintDate(dateOne);
+        std::cout << " Less Than ";
+        PrintDate(dateTwo);
+    }
+    else {
+        PrintDate(dateOne);
+        std::cout << " Not Less Than ";
+        PrintDate(dateTwo);
+    }
+}
+```
