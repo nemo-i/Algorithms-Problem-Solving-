@@ -674,3 +674,30 @@ bool IsLastMonthInYear(Date sDate) {
 	return sDate.month == 12;
 }
 ```
+### 47. `Date AddOneDayToDate(Date sDate)`
+- **Input:** 
+  - `Date sDate` - the date to add one day to.
+- **Output:** `Date` - returns the new date with one day added.
+- **Description:** Adds one day to the given date, adjusting the month and year if the current day is the last day of the month or the last day of the year.
+
+```cpp
+Date AddOneDayToDate(Date sDate) {
+    Date date = {0};
+    if (IsLastDayInMonth(sDate) && IsLastMonthInYear(sDate)) {
+        date.year = ++sDate.year;
+        date.month = 1;
+        date.day = 1;
+        return date;
+    }
+    if (IsLastDayInMonth(sDate)) {
+        date.year = sDate.year;
+        date.month = ++sDate.month;
+        date.day = 1;
+        return date;
+    }
+    date.year = sDate.year;
+    date.month = sDate.month;
+    date.day = ++sDate.day;
+    return date;
+}
+```
