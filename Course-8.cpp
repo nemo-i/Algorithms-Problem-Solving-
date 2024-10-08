@@ -375,9 +375,33 @@ bool IsLastMonthInYear(Date sDate) {
 	return sDate.month == 12;
 }
 
-	int main()
-{
+Date AddOneDayToDate(Date sDate) {
+	Date date = {0};
+	if (IsLastDayInMonth(sDate) && IsLastMonthInYear(sDate)) {
+		date.year = ++sDate.year;
+		date.month = 1;
+		date.day = 1;
+		return date;
+	}
+	if (IsLastDayInMonth(sDate)) {
+		date.year = sDate.year;
+		date.month = ++sDate.month;
+		date.day = 1;
+		return date;
+	}
+	date.year = sDate.year;
+	date.month = sDate.month;
+	date.day = ++sDate.day;
+	return date;
+}
+void PrintAddOneDayToDate() {
+	Date date = ReadDate();
+date = 	AddOneDayToDate(date);
+	PrintDate(date);
+}
 
-		PrintDateLess();
+int main()
+{
+	PrintAddOneDayToDate();
 }
 
