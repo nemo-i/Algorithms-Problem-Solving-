@@ -400,8 +400,25 @@ date = 	AddOneDayToDate(date);
 	PrintDate(date);
 }
 
+
+short DiffInDate(Date sDateOne, Date sDateTwo) {
+	int counter = 0;
+	while (!DateEqualDateTwo(sDateOne,sDateTwo))
+	{
+	sDateOne =	AddOneDayToDate(sDateOne);
+		counter++;
+	}
+	return counter;
+}
+
+void PrintDiffInDate() {
+	Date dateOne = ReadDate();
+	Date dateTwo = ReadDate();
+short diff = 	DiffInDate(dateOne,dateTwo);
+std::cout << diff << " Days " << "\n";
+}
 int main()
 {
-	PrintAddOneDayToDate();
+	PrintDiffInDate();
 }
 

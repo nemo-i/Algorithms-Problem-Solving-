@@ -701,3 +701,20 @@ Date AddOneDayToDate(Date sDate) {
     return date;
 }
 ```
+### 49. `short DiffInDate(Date sDateOne, Date sDateTwo)`
+- **Input:** 
+  - `Date sDateOne` - the first date.
+  - `Date sDateTwo` - the second date.
+- **Output:** `short` - returns the difference in days between the two dates.
+- **Description:** Calculates the number of days between two dates by iteratively adding one day to the first date until it equals the second date.
+
+```cpp
+short DiffInDate(Date sDateOne, Date sDateTwo) {
+    int counter = 0;
+    while (!DateEqualDateTwo(sDateOne, sDateTwo)) {
+        sDateOne = AddOneDayToDate(sDateOne);
+        counter++;
+    }
+    return counter;
+}
+```
