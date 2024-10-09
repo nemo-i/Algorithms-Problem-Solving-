@@ -509,7 +509,7 @@ Date IncreaseDateByOneCentury(Date sDate) {
 	return sDate;
 }
 Date IncreaseDateByOneMillennium(Date sDate) {
-	sDate = sDate.year + 1000;
+	sDate.year = sDate.year + 1000;
 	return sDate;
 }
 int main()

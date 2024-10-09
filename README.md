@@ -729,3 +729,76 @@ int CalAgeInDays(Date BirthDate) {
     return DiffInDate(BirthDate, GetSystemDate());
 }
 ```
+### 51. `Add Whole New Date Function To Work On Date And Increase By Amout Of Time `
+
+```cpp
+Date IncreaseDateByXDays(Date sDate,int Days) {
+	
+		sDate = AddDaysToDate(sDate,Days);
+		return sDate;
+}
+
+Date IncreaseDateByOneWeek(Date sDate) {
+return	IncreaseDateByXDays(sDate,7);
+}
+Date IncreaseDateByXWeeks(Date sDate,short Weeks) {
+	for (size_t i = 0; i < Weeks; i++)
+	{
+	 sDate = IncreaseDateByOneWeek(sDate);
+	}
+	return sDate;
+}
+Date IncreaseDateByOneMonth(Date sDate) {
+	if (IsLastMonthInYear(sDate)) {
+		sDate.year++;
+		sDate.month = 1;
+		
+	}
+	else
+	{
+		sDate.month++;
+		
+	}
+short numberOfDayInThisMonth=	NumberOfDaysInMonth(sDate.month,sDate.year);
+if (sDate.day > numberOfDayInThisMonth) {
+	sDate.day = sDate.day - numberOfDayInThisMonth;
+	sDate.month++;
+}
+
+
+	return sDate;
+}
+Date IncreaseDateByXMonth(Date sDate, short Months) {
+	for (size_t i = 0; i < Months; i++)
+	{
+		sDate = IncreaseDateByOneMonth(sDate);
+		
+	}return sDate;
+}
+
+Date IncreaseDateByOneYear(Date sDate) {
+	sDate.year++;
+	return sDate;
+}
+Date IncreaseDateByXYears(Date sDate, short Years) {
+	sDate.year = sDate.year + Years;
+	return sDate;
+}
+
+Date InceraseDateByOneDeacade(Date sDate) {
+	sDate = IncreaseDateByXYears(sDate, 10);
+	return sDate;
+}
+Date IncreaseDateByXDeacde(Date sDate, short Decades) {
+	sDate.year = sDate.year + (10 *Decades);
+	return sDate;
+}
+Date IncreaseDateByOneCentury(Date sDate) {
+	sDate = IncreaseDateByXDeacde(sDate,10);
+	return sDate;
+}
+Date IncreaseDateByOneMillennium(Date sDate) {
+	sDate.year = sDate.year + 1000;
+	return sDate;
+}
+```
