@@ -718,3 +718,14 @@ short DiffInDate(Date sDateOne, Date sDateTwo) {
     return counter;
 }
 ```
+### 50. `int CalAgeInDays(Date BirthDate)`
+- **Input:** 
+  - `Date BirthDate` - the birth date to calculate the age from.
+- **Output:** `int` - returns the age in days.
+- **Description:** Calculates the age in days by finding the difference between the given birth date and the current system date.
+
+```cpp
+int CalAgeInDays(Date BirthDate) {
+    return DiffInDate(BirthDate, GetSystemDate());
+}
+```
