@@ -997,3 +997,27 @@ short DaysUntilTheEndOfTheYear(Date sDate, bool IncludeCurrentDay = true) {
 return 	yearDays - HowManyDaysSinceStartOfTheYear(sDate.year, sDate.month, sDate.day) + (IncludeCurrentDay ? 1 : 0);
 }
 ```
+
+## 8. `short VacationPeriod(Date StartDate, Date EndDate)`
+Calculates the number of business days between two dates (`StartDate` and `EndDate`).
+- **Parameters**:  
+  - `Date StartDate`: The starting date of the vacation period.
+  - `Date EndDate`: The ending date of the vacation period.
+- **Returns**:  
+  - A `short` value representing the total number of business days within the vacation period.
+- **Logic**:  
+  - The function increments a counter (`vaction`) for each business day found between the start and end dates, using a loop that continues until `StartDate` is no longer less than `EndDate`. Each day is checked for being a business day using the `IsBusinessDay` function, and the `AddOneDayToDate` function is used to move to the next day.
+```cpp
+short VacationPeriod(Date StartDate, Date EndDate) {
+	short vaction = 0;
+	while (DateOneLessThanDateTwo(StartDate,EndDate))
+	{
+		
+		if (IsBusinessDay(StartDate)) {
+			vaction++;
+		}
+	StartDate = 	AddOneDayToDate(StartDate);
+	}
+	return vaction;
+}
+```

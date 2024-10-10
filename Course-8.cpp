@@ -630,16 +630,24 @@ short DaysUntilTheEndOfTheYear(Date sDate, bool IncludeCurrentDay = true) {
 	}
 return 	yearDays - HowManyDaysSinceStartOfTheYear(sDate.year, sDate.month, sDate.day) + (IncludeCurrentDay ? 1 : 0);
 }
+
+short VacationPeriod(Date StartDate, Date EndDate) {
+	short vaction = 0;
+	while (DateOneLessThanDateTwo(StartDate,EndDate))
+	{
+		
+		if (IsBusinessDay(StartDate)) {
+			vaction++;
+		}
+	StartDate = 	AddOneDayToDate(StartDate);
+	}
+	return vaction;
+}
 int main()
 {
 	Date dateOne = ReadDate();
-	
-	//PrintDate(DecreaseDateByOneMilinia(dateOne));
-	std::cout << "Is end of the week " << (IsEndOfWeek(dateOne) ? " Yes end of Week" : " No not end of the week") << "\n";
-	std::cout << "Is is weekend day " << (IsWeekendDay(dateOne) ? " Yes Weekend" : " No not week end") << "\n";
-	std::cout << "Is is busniess day " << (IsBusinessDay(dateOne) ? " Yes busniess day" : " No not busniss day ") << "\n";
-	std::cout << "Day until end of the week " << DaysUntilTheEndOfTheWeek(dateOne)<<" days" << "\n";
-	std::cout << "Day until end of the month " << DaysUntilTheEndOfTheMonth(dateOne) << " days" << "\n";
-	std::cout << "Day until end of the year " << DaysUntilTheEndOfTheYear(dateOne) << " days" << "\n";
+	Date dateTwo = ReadDate();
+	std::cout << std::endl;
+	std::cout<<VacationPeriod(dateOne,dateTwo);
 }
 
