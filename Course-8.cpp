@@ -512,11 +512,94 @@ Date IncreaseDateByOneMillennium(Date sDate) {
 	sDate.year = sDate.year + 1000;
 	return sDate;
 }
+Date DecreaseDateByOneDay(Date sDate) {
+	if (sDate.day == 1 && sDate.month !=1) {
+		sDate.month -= 1;
+		sDate.day = NumberOfDaysInMonth(sDate.month,sDate.year);
+		return sDate;
+	}
+	if (sDate.day == 1 && sDate.month == 1) {
+		sDate.year -= 1;
+		sDate.month = 12;
+		sDate.day = NumberOfDaysInMonth(sDate.month,sDate.year);
+		return sDate;
+	}
+	
+	sDate.day = sDate.day--;
+
+	return sDate;
+}
+Date DecreaseDateByXDays(Date sDate,short Days) {
+	for (size_t i = 0; i < Days; i++)
+	{
+		sDate = DecreaseDateByOneDay(sDate);
+	}
+	return sDate;
+}
+Date DecreaseDateByOneWeek(Date sDate) {
+	
+		sDate = DecreaseDateByXDays(sDate, 7);
+	
+	return sDate;
+}
+Date DecreaseDateByXWeeks(Date sDate, short Weeks) {
+	for (size_t i = 0; i < Weeks; i++)
+	{
+		sDate = DecreaseDateByOneWeek(sDate);
+	}
+	return sDate;
+}
+Date DecreaseDateByOneMonth(Date sDate) {
+	if (sDate.month == 1) {
+		sDate.year--;
+		sDate.month = 12;
+		
+		return sDate;
+	}
+	if (sDate.month > 2 && sDate.day > 29 )  {
+		sDate.month--;
+		sDate.day = NumberOfDaysInMonth(sDate.month, sDate.year);
+		return sDate;
+	}
+	sDate.month--;
+	return sDate;
+}
+Date DecreaseDateByXMonth(Date sDate,short Months) {
+	for (size_t i = 0; i < Months; i++)
+	{
+		sDate = DecreaseDateByOneMonth(sDate);
+	}
+	return sDate;
+}
+Date DecreaseDateByOneYear(Date sDate) {
+	sDate.year--;
+	return sDate;
+}
+Date DecreaseDateByXYears(Date sDate, int Years) {
+	sDate.year -= Years;
+	return sDate;
+}
+Date DecreaseDateByOneDecade(Date sDate, int Decades) {
+	sDate.year -= (Decades * 10);
+	return sDate;
+}
+Date DecreaseDateByOneCentury(Date sDate) {
+	sDate.year -= (100);
+	return sDate;
+}
+Date DecreaseDateXCenturies(Date sDate, int Centuries) {
+	sDate.year -= (100 * Centuries);
+	return sDate;
+}
+Date DecreaseDateByOneMilinia(Date sDate) {
+	sDate.year -= 1000;
+	return sDate;
+}
 int main()
 {
 	Date dateOne = ReadDate();
 	
-	PrintDate(IncreaseDateByXDeacde(dateOne,20));
+	PrintDate(DecreaseDateByOneMilinia(dateOne));
 	
 }
 
