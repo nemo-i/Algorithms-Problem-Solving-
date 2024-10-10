@@ -106,7 +106,7 @@ void PrintMonthTimeCard() {
 
 
 
-short DayPostionOfTheWeek(short Year , short Month , short Day){
+short DayOfWeekOrder(short Year , short Month , short Day){
 	short	a = (14 - Month) / 12;
 	short y = Year - a;
 	short m = Month + (12 * a) - 2;
@@ -142,7 +142,7 @@ void PrintDateCard() {
 	short year  = ReadYear();
 	short month = ReadMonth();
 	short day = ReadDay();
-	short dayPos = DayPostionOfTheWeek(year, month, day);
+	short dayPos = DayOfWeekOrder(year, month, day);
 	std::string dayName = DayNameOfTheWeek(dayPos);
 	std::cout << "Date      :" << day << "/" << month << "/" << year<<std::endl;
 	std::cout << "Day Order :" << dayPos<<std::endl;
@@ -181,7 +181,7 @@ void PrintClanderHeader() {
 }
 
 void GenerateCalnderDays(short* Days, short Year,short Month,short Day) {
-	short startDayOfMonth = DayPostionOfTheWeek(Year, Month, Day);
+	short startDayOfMonth = DayOfWeekOrder(Year, Month, Day);
 	short daysInMonth = NumberOfDaysInMonth(Month,Year);
 	short counter = 1;
 	for (size_t i = 0; i < 35; i++)
@@ -595,11 +595,51 @@ Date DecreaseDateByOneMilinia(Date sDate) {
 	sDate.year -= 1000;
 	return sDate;
 }
+short DayOfWeekOrder(Date sDate) {
+	short	a = (14 - sDate.month) / 12;
+	short y = sDate.year - a;
+	short m = sDate.month + (12 * a) - 2;
+	short d = (sDate.day + y + (y / 4) - (y / 100) + (y / 400) + ((31 * m) / 12)) % 7;
+	return d;
+}
+bool IsEndOfWeek(Date sDate) {
+	return DayOfWeekOrder(sDate) == 6;
+}
+
+bool IsWeekendDay(Date sDate) {
+	return DayOfWeekOrder(sDate) == 5 || DayOfWeekOrder(sDate) == 6;
+}
+bool IsBusinessDay(Date sDate) {
+	return !IsWeekendDay(sDate);
+}
+
+short DaysUntilTheEndOfTheWeek(Date sDate) {
+	return 6- DayOfWeekOrder(sDate) ;
+}
+short DaysUntilTheEndOfTheMonth(Date sDate, bool IncludeCurrentDay = true) {
+ return	NumberOfDaysInMonth(sDate.month, sDate.year) - sDate.day + (IncludeCurrentDay?1:0);
+}
+short DaysUntilTheEndOfTheYear(Date sDate, bool IncludeCurrentDay = true) {
+	short yearDays;
+	if (LeapYearSimplifiedVersion(sDate.year)) {
+		yearDays = 366;
+	}
+	else
+	{
+		yearDays = 365;
+	}
+return 	yearDays - HowManyDaysSinceStartOfTheYear(sDate.year, sDate.month, sDate.day) + (IncludeCurrentDay ? 1 : 0);
+}
 int main()
 {
 	Date dateOne = ReadDate();
 	
-	PrintDate(DecreaseDateByOneMilinia(dateOne));
-	
+	//PrintDate(DecreaseDateByOneMilinia(dateOne));
+	std::cout << "Is end of the week " << (IsEndOfWeek(dateOne) ? " Yes end of Week" : " No not end of the week") << "\n";
+	std::cout << "Is is weekend day " << (IsWeekendDay(dateOne) ? " Yes Weekend" : " No not week end") << "\n";
+	std::cout << "Is is busniess day " << (IsBusinessDay(dateOne) ? " Yes busniess day" : " No not busniss day ") << "\n";
+	std::cout << "Day until end of the week " << DaysUntilTheEndOfTheWeek(dateOne)<<" days" << "\n";
+	std::cout << "Day until end of the month " << DaysUntilTheEndOfTheMonth(dateOne) << " days" << "\n";
+	std::cout << "Day until end of the year " << DaysUntilTheEndOfTheYear(dateOne) << " days" << "\n";
 }
 

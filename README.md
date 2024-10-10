@@ -889,3 +889,111 @@ Date DecreaseDateByOneMilinia(Date sDate) {
 }
 
 ```
+# Date Calculation Functions
+
+## 1. `short DayOfWeekOrder(Date sDate)`
+Calculates the day of the week for the given date (`sDate`).  
+- **Parameters**:  
+  - `Date sDate`: A structure containing the date (day, month, year).
+- **Returns**:  
+  - A `short` value representing the day of the week (0 = Sunday, 6 = Saturday).  
+  - The algorithm takes into account leap years and adjusts accordingly.
+
+---
+```cpp
+short DayOfWeekOrder(Date sDate) {
+	short	a = (14 - sDate.month) / 12;
+	short y = sDate.year - a;
+	short m = sDate.month + (12 * a) - 2;
+	short d = (sDate.day + y + (y / 4) - (y / 100) + (y / 400) + ((31 * m) / 12)) % 7;
+	return d;
+}
+```
+## 2. `bool IsEndOfWeek(Date sDate)`
+Determines whether the given date is the end of the week (Saturday).
+- **Parameters**:  
+  - `Date sDate`: A structure containing the date.
+- **Returns**:  
+  - `true` if the date is Saturday, otherwise `false`.
+
+---
+```cpp
+bool IsEndOfWeek(Date sDate) {
+	return DayOfWeekOrder(sDate) == 6;
+}
+```
+## 3. `bool IsWeekendDay(Date sDate)`
+Checks if the given date falls on a weekend (Friday or Saturday).
+- **Parameters**:  
+  - `Date sDate`: A structure containing the date.
+- **Returns**:  
+  - `true` if the date is Friday or Saturday, otherwise `false`.
+
+---
+```cpp
+bool IsWeekendDay(Date sDate) {
+	return DayOfWeekOrder(sDate) == 5 || DayOfWeekOrder(sDate) == 6;
+}
+```
+
+## 4. `bool IsBusinessDay(Date sDate)`
+Determines if the given date is a business day (not a weekend).
+- **Parameters**:  
+  - `Date sDate`: A structure containing the date.
+- **Returns**:  
+  - `true` if the date is a business day, otherwise `false`.
+
+---
+```cpp
+bool IsBusinessDay(Date sDate) {
+	return !IsWeekendDay(sDate);
+}
+
+```
+## 5. `short DaysUntilTheEndOfTheWeek(Date sDate)`
+Calculates how many days remain until the end of the week (Saturday).
+- **Parameters**:  
+  - `Date sDate`: A structure containing the date.
+- **Returns**:  
+  - A `short` value representing the number of days left until Saturday.
+
+---
+```cpp
+short DaysUntilTheEndOfTheWeek(Date sDate) {
+	return 6- DayOfWeekOrder(sDate) ;
+}
+```
+## 6. `short DaysUntilTheEndOfTheMonth(Date sDate, bool IncludeCurrentDay = true)`
+Calculates the number of days remaining until the end of the month, with an option to include the current day.
+- **Parameters**:  
+  - `Date sDate`: A structure containing the date.
+  - `bool IncludeCurrentDay`: A flag indicating whether to include the current day in the calculation (default is `true`).
+- **Returns**:  
+  - A `short` value representing the number of days until the end of the month.
+
+---
+```cpp
+short DaysUntilTheEndOfTheMonth(Date sDate, bool IncludeCurrentDay = true) {
+ return	NumberOfDaysInMonth(sDate.month, sDate.year) - sDate.day + (IncludeCurrentDay?1:0);
+}
+```
+## 7. `short DaysUntilTheEndOfTheYear(Date sDate, bool IncludeCurrentDay = true)`
+Calculates the number of days remaining until the end of the year, with an option to include the current day.
+- **Parameters**:  
+  - `Date sDate`: A structure containing the date.
+  - `bool IncludeCurrentDay`: A flag indicating whether to include the current day in the calculation (default is `true`).
+- **Returns**:  
+  - A `short` value representing the number of days until the end of the year.
+```cpp
+short DaysUntilTheEndOfTheYear(Date sDate, bool IncludeCurrentDay = true) {
+	short yearDays;
+	if (LeapYearSimplifiedVersion(sDate.year)) {
+		yearDays = 366;
+	}
+	else
+	{
+		yearDays = 365;
+	}
+return 	yearDays - HowManyDaysSinceStartOfTheYear(sDate.year, sDate.month, sDate.day) + (IncludeCurrentDay ? 1 : 0);
+}
+```
